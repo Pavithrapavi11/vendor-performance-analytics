@@ -1,4 +1,0 @@
-list,vendor_id,vendor_name,vendor_category,total_pos,otd_pct,defect_rate_pct,fill_rate_pct,price_var_pct,composite_score,benchmark_otd,benchmark_defect
-PIP,V002,Ganga Industries,Raw Materials,28,21.43,2.35,97.23,1.11,67.41,60.28,2.53
-PIP,V010,Himalaya Mro,Raw Materials,28,25.0,2.16,98.11,1.23,68.89,60.28,2.53
-PIP,V005,Sundar Logistics,Packaging,87,52.33,6.14,96.94,1.46,78.18,60.28,2.53
