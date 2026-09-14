@@ -1,0 +1,4 @@
+list,vendor_id,vendor_name,vendor_category,total_pos,otd_pct,defect_rate_pct,fill_rate_pct,price_var_pct,composite_score
+REWARD,V003,Krishna Traders,Packaging,38,73.68,1.38,97.36,1.84,88.55
+REWARD,V019,Narmada Traders,Packaging,31,74.19,1.59,97.18,2.87,88.47
+REWARD,V013,Deccan Distributors,Logistics,71,71.43,1.63,96.83,2.44,87.43

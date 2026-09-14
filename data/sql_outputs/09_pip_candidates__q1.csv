@@ -1,0 +1,21 @@
+vendor_id,vendor_name,region,vendor_category,total_pos,otd_pct,fill_rate_pct,price_var_pct,inspected_pos,defect_rate_pct,composite_score
+V003,Krishna Traders,South,Packaging,38,73.68,97.36,1.84,20,1.38,88.55
+V019,Narmada Traders,South,Packaging,31,74.19,97.18,2.87,14,1.59,88.47
+V013,Deccan Distributors,East,Logistics,71,71.43,96.83,2.44,46,1.63,87.43
+V008,Aditya Corp,West,Logistics,109,70.75,96.87,1.23,65,1.88,87.31
+V012,Kolkata Rawmet,West,Packaging,130,66.92,96.5,2.3,77,1.78,85.6
+V001,Bharat Packaging Co,North,Packaging,128,66.14,96.68,1.89,79,2.53,85.07
+V020,Kaveri Movers,East,MRO,96,65.63,95.83,2.83,59,2.27,84.77
+V011,Chennai Freight Ltd,East,Packaging,62,66.13,97.14,2.42,36,5.03,83.96
+V004,Meghna Supplies,North,MRO,120,63.33,96.01,2.22,77,2.38,83.94
+V009,Sagar Packworks,South,MRO,24,62.5,96.83,2.41,14,2.01,83.72
+V006,Ravi Raw Materials,South,Packaging,84,61.73,96.0,1.84,52,1.72,83.64
+V015,Nilgiri Metals,North,Logistics,98,61.86,96.3,2.02,60,1.87,83.59
+V016,Konark Cargo,East,Raw Materials,48,62.5,95.91,3.21,27,2.29,83.44
+V017,Godavari Supplies,North,Packaging,88,63.64,96.41,2.68,47,5.16,82.85
+V007,Vikram Enterprises,South,MRO,57,58.93,96.3,2.73,34,2.1,82.19
+V018,Yamuna Packaging,South,Logistics,56,57.14,96.78,2.31,35,1.82,81.67
+V005,Sundar Logistics,North,Packaging,87,52.33,96.94,1.46,57,6.14,78.18
+V014,Ashoka Papers,West,Packaging,17,29.41,97.35,3.58,12,1.29,70.53
+V010,Himalaya Mro,East,Raw Materials,28,25.0,98.11,1.23,12,2.16,68.89
+V002,Ganga Industries,East,Raw Materials,28,21.43,97.23,1.11,17,2.35,67.41

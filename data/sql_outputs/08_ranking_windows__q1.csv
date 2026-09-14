@@ -1,0 +1,21 @@
+vendor_id,vendor_name,vendor_category,spend_inr,otd_pct,rank_by_spend,rank_by_otd
+V008,Aditya Corp,Logistics,314197786.6,70.75,1,2
+V015,Nilgiri Metals,Logistics,273782776.56,61.86,2,3
+V018,Yamuna Packaging,Logistics,192809096.44,57.14,3,4
+V013,Deccan Distributors,Logistics,114133557.16,71.43,4,1
+V020,Kaveri Movers,MRO,49949521.54,65.63,1,1
+V004,Meghna Supplies,MRO,11022753.29,63.33,2,2
+V007,Vikram Enterprises,MRO,4323819.51,58.93,3,4
+V009,Sagar Packworks,MRO,1439016.97,62.5,4,3
+V001,Bharat Packaging Co,Packaging,26227786.74,66.14,1,4
+V012,Kolkata Rawmet,Packaging,15322544.9,66.92,2,3
+V017,Godavari Supplies,Packaging,12904733.65,63.64,3,6
+V003,Krishna Traders,Packaging,9703829.07,73.68,4,2
+V006,Ravi Raw Materials,Packaging,8592717.76,61.73,5,7
+V005,Sundar Logistics,Packaging,7923267.68,52.33,6,8
+V019,Narmada Traders,Packaging,4231221.56,74.19,7,1
+V011,Chennai Freight Ltd,Packaging,3597064.49,66.13,8,5
+V014,Ashoka Papers,Packaging,581464.13,29.41,9,9
+V016,Konark Cargo,Raw Materials,37169098.67,62.5,1,1
+V010,Himalaya Mro,Raw Materials,10618532.11,25.0,2,2
+V002,Ganga Industries,Raw Materials,10436334.61,21.43,3,3

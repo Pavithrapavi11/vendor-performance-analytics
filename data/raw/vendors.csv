@@ -1,0 +1,21 @@
+vendor_id,vendor_name,region,vendor_category,contract_start_date,payment_terms
+V001,Bharat Packaging Co,North,Packaging,2022-08-05,Net 60
+V002,Ganga Industries,East,Raw Materials,2021-01-23,Net 30
+V003,KRISHNA TRADERS,South,Packaging,2021-09-08,Net 60
+V004,Meghna Supplies,North,MRO,2021-07-23,Net 30
+V005,Sundar Logistics,North,Packaging,2022-11-02,Net 30
+V006,Ravi Raw Materials,South,Packaging,2022-09-08,Net 60
+V007,Vikram Enterprises,South,MRO,2023-03-23,Net 30
+V008,aditya corp,West,Logistics,2021-03-21,Net 30
+V009,Sagar Packworks,South,MRO,2022-01-19,Net 45
+V010,Himalaya MRO,East,Raw Materials,2021-01-28,Net 30
+V011,Chennai Freight Ltd,East,Packaging,2021-07-18,Net 30
+V012,Kolkata Rawmet,West,Packaging,2022-04-05,Net 45
+V013,Deccan Distributors,East,Logistics,2021-01-25,Net 30
+V014,Ashoka Papers,West,Packaging,2021-06-30,Net 45
+V015,Nilgiri Metals,North,Logistics,2022-08-15,Net 60
+V016,Konark Cargo,East,Raw Materials,2022-05-11,Net 60
+V017,Godavari Supplies,North,Packaging,2021-07-20,Net 60
+V018,Yamuna Packaging,South,Logistics,2022-06-21,Net 30
+V019,Narmada Traders,South,Packaging,2023-01-07,Net 45
+V020,Kaveri Movers,East,MRO,2021-01-06,Net 60

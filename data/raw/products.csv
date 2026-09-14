@@ -1,0 +1,17 @@
+product_id,product_name,category,standard_unit_price
+P001,Corrugated Box 12x8,Packaging,45
+P002,Plastic Film Roll,Packaging,320
+P003,Bubble Wrap 100m,Packaging,180
+P004,Stretch Wrap Roll,Packaging,260
+P005,Steel Sheet 2mm,Raw Materials,1200
+P006,Aluminium Coil,Raw Materials,2100
+P007,Copper Wire kg,Raw Materials,780
+P008,MS Rod 10mm,Raw Materials,410
+P009,Freight FTL Delhi,Logistics,42000
+P010,Freight FTL Mumbai,Logistics,38000
+P011,LTL Consolidation,Logistics,8500
+P012,Last-Mile Delivery,Logistics,650
+P013,Lubricant 5L,MRO,850
+P014,Safety Gloves Pack,MRO,320
+P015,Bearing 6205,MRO,210
+P016,Industrial Sealant,MRO,480

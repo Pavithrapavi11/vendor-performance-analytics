@@ -1,0 +1,174 @@
+// ============================================================================
+// NorthBridge Supplies — Power BI DAX Measures
+// ----------------------------------------------------------------------------
+// Import the four *_clean CSVs (or connect Power BI to the PostgreSQL server)
+// as tables: vendors_clean, products_clean, purchase_orders_clean,
+// quality_inspections_clean. Then paste each block below as a New Measure
+// in the Home ribbon.
+//
+// These formulas mirror the SQL in /sql/ exactly, so dashboard numbers match
+// the report numbers.
+// ============================================================================
+
+// --- Basic counts / spend ---------------------------------------------------
+
+Total POs =
+    COUNTROWS ( purchase_orders_clean )
+
+Total Spend INR =
+    SUM ( purchase_orders_clean[invoice_amount] )
+
+Avg PO Value =
+    DIVIDE ( [Total Spend INR], [Total POs] )
+
+
+// --- On-Time Delivery % -----------------------------------------------------
+//   Exclude rows with missing actual_delivery_date from the denominator.
+
+Delivered POs =
+    CALCULATE (
+        COUNTROWS ( purchase_orders_clean ),
+        NOT ISBLANK ( purchase_orders_clean[actual_delivery_date] )
+    )
+
+On-Time POs =
+    CALCULATE (
+        COUNTROWS ( purchase_orders_clean ),
+        NOT ISBLANK ( purchase_orders_clean[actual_delivery_date] ),
+        purchase_orders_clean[actual_delivery_date]
+            <= purchase_orders_clean[promised_date]
+    )
+
+OTD % =
+    DIVIDE ( [On-Time POs], [Delivered POs] ) * 100
+
+
+// --- Lead Time --------------------------------------------------------------
+
+Avg Lead Time (days) =
+    AVERAGEX (
+        FILTER (
+            purchase_orders_clean,
+            NOT ISBLANK ( purchase_orders_clean[actual_delivery_date] )
+        ),
+        DATEDIFF (
+            purchase_orders_clean[order_date],
+            purchase_orders_clean[actual_delivery_date],
+            DAY
+        )
+    )
+
+
+// --- Fill Rate % (capped at 100, excluding Cancelled) -----------------------
+
+Avg Fill Rate % =
+    AVERAGEX (
+        FILTER (
+            purchase_orders_clean,
+            purchase_orders_clean[quantity_ordered] > 0
+                && purchase_orders_clean[order_status] <> "Cancelled"
+        ),
+        MIN (
+            100,
+            DIVIDE (
+                purchase_orders_clean[quantity_received] * 100.0,
+                purchase_orders_clean[quantity_ordered]
+            )
+        )
+    )
+
+
+// --- Price Variance % (exclude zero / null agreed_price) --------------------
+
+Avg Price Variance % =
+    AVERAGEX (
+        FILTER ( purchase_orders_clean, purchase_orders_clean[agreed_price] > 0 ),
+        DIVIDE (
+            ( purchase_orders_clean[unit_price]
+              - purchase_orders_clean[agreed_price] ) * 100.0,
+            purchase_orders_clean[agreed_price]
+        )
+    )
+
+
+// --- Defect Rate % (inspected POs only) -------------------------------------
+
+Total Inspected Qty =
+    SUM ( quality_inspections_clean[inspected_quantity] )
+
+Total Defects =
+    SUM ( quality_inspections_clean[defect_count] )
+
+Defect Rate % =
+    DIVIDE ( [Total Defects], [Total Inspected Qty] ) * 100
+
+Inspection Coverage % =
+    DIVIDE (
+        DISTINCTCOUNT ( quality_inspections_clean[po_number] ),
+        [Total POs]
+    ) * 100
+
+
+// --- Composite Vendor Score (0.4·OTD + 0.4·(100−Defect) + 0.2·(100−max(0,PV%)))
+
+Composite Vendor Score =
+      0.40 * [OTD %]
+    + 0.40 * ( 100 - IF ( ISBLANK ( [Defect Rate %] ), 0, [Defect Rate %] ) )
+    + 0.20 * ( 100 - MAX ( 0, IF ( ISBLANK ( [Avg Price Variance %] ), 0, [Avg Price Variance %] ) ) )
+
+
+// --- Eligibility & PIP flag -------------------------------------------------
+
+Eligible Vendor =
+    IF ( [Total POs] >= 20, 1, 0 )
+
+Avg OTD % (all vendors) =
+    CALCULATE ( [OTD %], ALL ( vendors_clean ) )
+
+Avg Defect % (all vendors) =
+    CALCULATE ( [Defect Rate %], ALL ( vendors_clean ) )
+
+Has Issue =
+    IF (
+        [OTD %] < [Avg OTD % (all vendors)]
+            || [Defect Rate %] > [Avg Defect % (all vendors)],
+        1, 0
+    )
+
+PIP Flag =
+    IF (
+        [Eligible Vendor] = 1 && [Has Issue] = 1
+            && RANKX (
+                    FILTER ( ALL ( vendors_clean ),
+                        [Eligible Vendor] = 1 && [Has Issue] = 1 ),
+                    [Composite Vendor Score], , ASC
+               ) <= 3,
+        "PIP", ""
+    )
+
+Reward Flag =
+    IF (
+        [Eligible Vendor] = 1
+            && RANKX (
+                    FILTER ( ALL ( vendors_clean ), [Eligible Vendor] = 1 ),
+                    [Composite Vendor Score], , DESC
+               ) <= 3,
+        "★", ""
+    )
+
+
+// --- Delivery buckets (calculated column on purchase_orders_clean) ---------
+
+Delivery Bucket =                        // calculated column, not measure
+    SWITCH (
+        TRUE (),
+        ISBLANK ( purchase_orders_clean[actual_delivery_date] ), "Unknown",
+        purchase_orders_clean[actual_delivery_date]
+            <= purchase_orders_clean[promised_date], "On Time",
+        DATEDIFF (
+            purchase_orders_clean[promised_date],
+            purchase_orders_clean[actual_delivery_date],
+            DAY
+        ) <= 3, "Slightly Late",
+        "Significantly Late"
+    )
